@@ -1,0 +1,31 @@
+
+.wrapper {
+    --padding-side-buttons: 1rem;
+    margin-top: max(var(--section-height),var(--section-height-min));
+    height: max(var(--section-height),var(--section-height-min));
+    width: 100vw;
+    display: grid;
+    grid-template-columns: var(--grid-layout);
+
+    > * {
+        border-top: 1px solid var(--border-clr);
+        border-bottom: 1px solid var(--border-clr);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-inline: var(--padding-side-buttons);
+    }
+
+    .backbtn {
+        justify-content: end;
+    }
+
+    .mainhead {
+        justify-content: center;
+    }
+
+    .lightdark {
+        justify-content: start;
+    }
+}

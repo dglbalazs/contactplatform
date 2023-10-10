@@ -1,0 +1,61 @@
+
+
+.wrapper {
+    padding: 0;
+    --section-height: 10.6vh;
+    --section-height-min: 96px;
+    --border-clr: var(--clr-grey-60);
+    --left-right-padding: 25vw;
+    --grid-layout: var(--left-right-padding) calc(100vw - (var(--left-right-padding) * 2)) var(--left-right-padding);
+
+    display: grid;
+    grid-template-areas: centr;
+
+    > * {
+        grid-area: centr;
+    }
+}
+// .contacts_wrapper {
+//     padding: 0;
+//     margin: 0;
+//     display: grid;
+//     grid-template-columns: 25vw 50vw 25vw; /* 4 equal-width columns */
+//     grid-template-rows: 10.6vh 10.6vh 78.8vh;
+//     grid-template-areas: 
+//     ". content ."
+//     "backbtn content lightdarkmode"
+//     ". content .";
+//     align-items: center;
+
+//     .backbtn {
+//         border-top: 1px solid grey;
+//         border-bottom: 1px solid grey;
+//         display: flex;
+//         justify-content: end;
+//         align-items: center;
+//         padding: 1em;
+//         height: 100%;
+//         width: 100%;
+//         grid-area: backbtn;
+//     }
+
+//     .content {
+//         grid-area: content;
+//         border-left: 1px solid grey;
+//         border-right: 1px solid grey;
+//         width: 100%;
+//         height: 100%;
+//     }
+
+//     .lightdarkmode {
+//         border-top: 1px solid grey;
+//         border-bottom: 1px solid grey;
+//         display: flex;
+//         justify-content: start;
+//         align-items: center;
+//         padding: 1em;
+//         height: 100%;
+//         width: 100%;
+//         grid-area: lightdarkmode;
+//     }
+// }
