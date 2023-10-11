@@ -80,12 +80,12 @@ $colorVariableName: "clr"; // Dynamic variable for the color name
 
 $classes: (
     "buttons" : (
-        "deep-default" : var(--clr-grey-10),
-        "deep-active": var(--clr-grey-90),
-        "deep-hover" : var(--clr-grey-80),
-        "normal-default" : var(--clr-grey-60),
-        "normal-active": var(--clr-grey-50),
-        "normal-hover" : var(--clr-grey-40),
+        "deep-default" : var(--clr-primary-100),
+        "deep-active": var(--clr-primary-90),
+        "deep-hover" : var(--clr-primary-80),
+        "normal-default" : var(--clr-primary-60),
+        "normal-active": var(--clr-primary-50),
+        "normal-hover" : var(--clr-primary-40),
         "grad-default" : var(--clr-btn-gradient-default),
         "grad-active-start": var(--clr-btn-gradient-active-1),
         "grad-active-end": var(--clr-btn-gradient-active-2),
@@ -93,8 +93,8 @@ $classes: (
         "grad-hover-end" : var(--clr-btn-gradient-hover-2),
     ),
     "textforeground": (
-        "primary" : var(--clr-grey-100),
-        "secondary": var(--clr-grey-80)
+        "primary" : var(--clr-primary-100),
+        "secondary": var(--clr-primary-80)
     ),
 );
 
@@ -104,7 +104,7 @@ $classesVariableName: "class"; // Dynamic variable for the color name
   @each $subKey, $subValue in $value {
     $varName: "#{$classesVariableName}-#{$key}-#{$subKey}";
     $varValue: $subValue;
-    :root {
+    .light,.dark {
       --#{$varName}: #{$varValue};
     }
   }
