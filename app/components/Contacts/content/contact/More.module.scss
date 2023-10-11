@@ -8,7 +8,7 @@
     background: var(--clr-primary-80);
     border-radius: 8px;
 
-    @media (max-width:60em) {
+    @media (max-width:60rem) {
         left: calc(100% - var(--contact-more-popup-height-desktop)) !important;
     }
 

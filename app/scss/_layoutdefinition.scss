@@ -56,7 +56,7 @@ $contact-more-popup-width-desktop: 219px;
 
 // Mobile definitions
 
-@media (max-width:60em) {
+@media (max-width:60rem) {
     :root {
         --left-right-padding: #{$page-section-width-mobile};
 

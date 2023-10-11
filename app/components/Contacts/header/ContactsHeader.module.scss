@@ -1,6 +1,7 @@
 
 .wrapper {
     --padding-side-buttons: 1rem;
+
     z-index: var(--header-z-index);
     height: var(--header-height);
     width: var(--header-width);
@@ -35,7 +36,7 @@
         justify-content: var(--header-submenu-justify);
         gap: var(--header-submenu-gap);
 
-        @media (max-width:60em) {
+        @media (max-width:60rem) {
             .additem {
                 padding-left: var(--padding-side-buttons);
                 order: 1;
