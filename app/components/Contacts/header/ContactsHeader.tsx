@@ -25,6 +25,7 @@ const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme, form
 
     return (
         <div className={styles.wrapper}>
+
             <div className={styles.backbtn}>
                 <Button
                         buttonType="onlyicon"
@@ -33,16 +34,21 @@ const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme, form
                         text=""
                     />
             </div>
-            <div className={styles.mainhead}>
+            <div className={styles.headertext}>
                 <Text text="Contacts" texttype={1} clr={1}></Text>
-                <div className={styles.submenu}>
+            </div>
+            
+            <div className={styles.submenu}>
+                <div className={styles.settings}>
                     <Button
                         buttonType="onlyicon"
                         colorType="deep"
                         icon="Settings"
                         text=""
                     />
-                    <img src="/icons/Photo.svg"></img>
+                </div>
+                <img src="/icons/Photo.svg" className={styles.accountimg}></img>
+                <div className={styles.additem}>
                     <Button
                         buttonType="both"
                         colorType="grad"
@@ -52,7 +58,9 @@ const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme, form
                     />
                 </div>
             </div>
+            
             <div className={styles.lightdark}>
+
             <Button
                         buttonType="onlyicon"
                         colorType="deep"
@@ -61,6 +69,7 @@ const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme, form
                         onClick={toggleTheme}
                     />
             </div>
+
         </div>
     )
 }

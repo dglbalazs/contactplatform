@@ -2,11 +2,12 @@
 .wrapper {
     --padding-side-buttons: 1rem;
     z-index: var(--header-z-index);
-    margin-top: max(var(--section-height),var(--section-height-min));
-    height: max(var(--section-height),var(--section-height-min));
-    width: 100dvw;
+    height: var(--header-height);
+    width: var(--header-width);
     display: grid;
-    grid-template-columns: var(--grid-layout);
+    grid-template-columns: var(--header-columns);
+    grid-template-rows: var(--header-rows);
+    grid-template-areas: var(--header-layout);
 
     > * {
         border-top: 1px solid var(--border-clr);
@@ -19,25 +20,40 @@
     }
 
     .backbtn {
+        grid-area: backbtn;
         justify-content: end;
     }
 
-    .mainhead {
-        justify-content: center;
+    .headertext {
+        grid-area: headertext;
+        justify-content: var(--header-text-justify);
+    }
+
+    .submenu {
+        grid-area: submenu;
+        display: flex;
+        justify-content: var(--header-submenu-justify);
+        gap: var(--header-submenu-gap);
+
+        @media (max-width:60em) {
+            .additem {
+                padding-left: var(--padding-side-buttons);
+                order: 1;
+            }
+            .settings {
+                order:2;
+            }
+            .accountimg {
+                order: 0;
+            }
+        }
+
     }
 
     .lightdark {
+        grid-area: lightdark;
         justify-content: start;
     }
 
-    .mainhead {
-        display: flex;
-        justify-content: space-between;
 
-        .submenu {
-            display: flex;
-            justify-content: space-between;
-            gap: 2em;
-        }
-    }
 }

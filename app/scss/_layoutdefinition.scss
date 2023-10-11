@@ -1,0 +1,59 @@
+
+// Controls height of the top two grid rows
+$page-section-height-max-desktop: 10.6vh;
+$page-section-height-min-desktop: 96px;
+
+// Control width of the left and right side grid columns
+$page-section-width-desktop: 25dvw;
+$page-section-width-mobile: 15dvw;
+
+// Controls header's layout
+$header-width-desktop: 100dvw;
+$header-columns: 25dvw auto 1fr 25dvw;
+$header-rows: 1fr 1fr;
+
+// Main text of the page inside header
+$header-text-justify-desktop: start;
+$header-text-justify-mobile: center;
+
+// Submenu inside header that contains account, settings, add item elements
+$header-submenu-justify-desktop: end;
+$header-submenu-justify-mobile: center;
+$header-submenu-gap-desktop: 2em;
+$header-submenu-gap-mobile: 3em;
+
+
+// Assigning values to CSS variables
+
+:root {
+    --page-section-height: #{$page-section-height-max-desktop};
+    --page-section-height-min: #{$page-section-height-min-desktop};
+    --left-right-padding: #{$page-section-width-desktop};
+    
+    --header-width: #{$header-width-desktop};
+    --header-height: calc(2 * max(var(--page-section-height),var(--page-section-height-min)));
+    --header-columns: #{$header-columns};
+    --header-rows: #{$header-rows};
+    --header-layout: 
+        ". . . ."
+        "backbtn headertext submenu lightdark"
+    ;
+    --header-text-justify: #{$header-text-justify-desktop};
+    --header-submenu-justify: #{$header-submenu-justify-desktop};
+    --header-submenu-gap: #{$header-submenu-gap-desktop};
+}
+
+// Mobile definitions
+
+@media (max-width:60em) {
+    :root {
+        --header-height: calc(2 * (max(var(--page-section-height),var(--page-section-height-min))));
+        --header-layout: 
+            "backbtn headertext headertext lightdark"
+            "submenu submenu submenu submenu"
+        ;
+        --header-text-justify: #{$header-text-justify-mobile};
+        --header-submenu-justify: #{$header-submenu-justify-mobile};
+        --header-submenu-gap: #{$header-submenu-gap-mobile};
+    }
+}

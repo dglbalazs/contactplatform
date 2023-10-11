@@ -8,7 +8,7 @@
     margin-inline: var(--left-right-padding);
     border-left: 1px solid var(--border-clr);
     border-right: 1px solid var(--border-clr);
-    padding-top: calc(var(--local-padding-top) + 2 * max(var(--section-height),var(--section-height-min)));
+    padding-top: calc(var(--local-padding-top) + 2 * max(var(--page-section-height),var(--page-section-height-min)));
     padding-inline: var(--local-padding-inline);
 
 
