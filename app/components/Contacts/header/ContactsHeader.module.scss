@@ -29,4 +29,15 @@
     .lightdark {
         justify-content: start;
     }
+
+    .mainhead {
+        display: flex;
+        justify-content: space-between;
+
+        .submenu {
+            display: flex;
+            justify-content: space-between;
+            gap: 2em;
+        }
+    }
 }
