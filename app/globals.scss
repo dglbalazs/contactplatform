@@ -1,4 +1,5 @@
 @import 'scss/_colors';
+@import 'scss/_fontface';
 
 * {
     box-sizing: border-box;
@@ -7,10 +8,20 @@
   }
 
 html,body {
-    // background: var(--clr-dark-primary-100);
     margin: 0;
     padding: 0;
-    // color: var(--clr-dark-textui-100);
+}
+
+.textclr1 { 
+    color: var(--clr-textui-100);
+}
+
+.textclr2 { 
+    color: var(--clr-textui-56);
+}
+
+.textclr3 { 
+    color: var(--clr-textui-32);
 }
 
 
