@@ -10,5 +10,7 @@ Missing functonalities, which have an estimated release deadline by 2023 Oct 12t
 - Creation of backend in Prisma, S3, possibly Vercel Postgres
 - Prettify code and improve on Utility components
 
-##
+## QUICK LINK
+
+https://contactplatform.vercel.app/
 
