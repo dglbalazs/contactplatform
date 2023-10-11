@@ -1,5 +1,5 @@
 "use client";
-import Contact from "./contact/contact";
+import Contact from "./contact/Contact";
 import styles from "./ContactsContent.module.scss"
 import { useState } from "react";
 
