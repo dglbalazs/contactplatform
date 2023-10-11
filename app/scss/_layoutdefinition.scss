@@ -5,7 +5,7 @@ $page-section-height-min-desktop: 96px;
 
 // Control width of the left and right side grid columns
 $page-section-width-desktop: 25dvw;
-$page-section-width-mobile: 15dvw;
+$page-section-width-mobile: 10dvw;
 
 // Controls header's layout
 $header-width-desktop: 100dvw;
@@ -22,6 +22,12 @@ $header-submenu-justify-mobile: center;
 $header-submenu-gap-desktop: 2em;
 $header-submenu-gap-mobile: 3em;
 
+
+$vertical-line-size-desktop: 1px;
+$vertical-line-size-mobile: 0px;
+
+$contact-more-popup-height-desktop: 200px;
+$contact-more-popup-width-desktop: 219px;
 
 // Assigning values to CSS variables
 
@@ -41,12 +47,19 @@ $header-submenu-gap-mobile: 3em;
     --header-text-justify: #{$header-text-justify-desktop};
     --header-submenu-justify: #{$header-submenu-justify-desktop};
     --header-submenu-gap: #{$header-submenu-gap-desktop};
+
+    --vertical-line-size: #{$vertical-line-size-desktop};
+
+    --contact-more-popup-height-desktop: #{$contact-more-popup-height-desktop};
+    --contact-more-popup-height-desktop: #{$contact-more-popup-height-desktop};
 }
 
 // Mobile definitions
 
 @media (max-width:60em) {
     :root {
+        --left-right-padding: #{$page-section-width-mobile};
+
         --header-height: calc(2 * (max(var(--page-section-height),var(--page-section-height-min))));
         --header-layout: 
             "backbtn headertext headertext lightdark"
@@ -55,5 +68,7 @@ $header-submenu-gap-mobile: 3em;
         --header-text-justify: #{$header-text-justify-mobile};
         --header-submenu-justify: #{$header-submenu-justify-mobile};
         --header-submenu-gap: #{$header-submenu-gap-mobile};
+
+        --vertical-line-size: #{$vertical-line-size-mobile};
     }
 }

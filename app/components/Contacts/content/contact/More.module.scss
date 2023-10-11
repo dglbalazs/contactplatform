@@ -1,13 +1,16 @@
 
 .wrapper {
-    --local-width: 219px;
     z-index: 99;
     position: absolute;
     left: calc(100% - 40px);
     top: 50px;
-    width: var(--local-width);
+    width: var(--contact-more-popup-height-desktop);
     background: var(--clr-primary-80);
     border-radius: 8px;
+
+    @media (max-width:60em) {
+        left: calc(100% - var(--contact-more-popup-height-desktop)) !important;
+    }
 
 
     .option {

@@ -6,9 +6,10 @@
     z-index: var(--content-z-index);
     min-height: 100vh;
     margin-inline: var(--left-right-padding);
-    border-left: 1px solid var(--border-clr);
-    border-right: 1px solid var(--border-clr);
+    border-left: var(--vertical-line-size) solid var(--border-clr);
+    border-right: var(--vertical-line-size) solid var(--border-clr);
     padding-top: calc(var(--local-padding-top) + 2 * max(var(--page-section-height),var(--page-section-height-min)));
+    padding-bottom: var(--contact-more-popup-height-desktop);
     padding-inline: var(--local-padding-inline);
 
 
