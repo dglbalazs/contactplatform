@@ -7,15 +7,21 @@ import Button from "../../Utility/Button";
 
 interface HeaderProps {
     theme: string,
-    setTheme: React.Dispatch<React.SetStateAction<string>>;
+    setTheme: React.Dispatch<React.SetStateAction<string>>,
+    formOpen: string | null,
+    setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>,
 }
 
-const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme}) => {
+const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme, formOpen, setFormOpen }) => {
 
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
       };
+
+    const toggleAddItem = () => {
+        setFormOpen("Add")
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -42,6 +48,7 @@ const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme}) => 
                         colorType="grad"
                         icon="Add"
                         text="Add Item"
+                        onClick={toggleAddItem}
                     />
                 </div>
             </div>

@@ -3,11 +3,15 @@ import Icon from "@/app/components/Utility/Icon";
 import Text from "@/app/components/Utility/Text";
 import styles from "./More.module.scss"
 
-const More = () => {
+interface MoreProps {
+    onEditToggle: () => void,
+  }
+  
+const More: React.FC<Readonly<MoreProps>> = ({ onEditToggle }) => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.option}>
+            <div className={styles.option} onClick={onEditToggle}>
                 <Icon iconname="Settings"></Icon>
                 <Text text="Edit" texttype={5} clr={1}></Text>
             </div>

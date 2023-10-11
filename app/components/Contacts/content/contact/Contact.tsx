@@ -5,13 +5,20 @@ import Text from "@/app/components/Utility/Text";
 import styles from "./Contact.module.scss"
 import More from "./More";
 import { useState } from "react";
+import ContactForm from "../../form/ContactForm";
 
 interface ContactProps {
     isOpen: boolean,
-    onToggle: () => void;
+    onToggle: () => void,
+    formOpen: string | null,
+    setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>
   }
 
-const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle }) => {
+const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen, setFormOpen }) => {
+
+    const handleEditOpen = (value: "Edit") => {
+        setFormOpen(value);
+    };
 
     return (
         <div className={styles.wrapper}>
@@ -44,7 +51,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle }) => {
                 />
             </div>
             {isOpen && (
-                <More></More>
+                <More onEditToggle={() => handleEditOpen("Edit")}></More>
             )}
         </div>
     )

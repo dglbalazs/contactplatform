@@ -4,7 +4,7 @@
     z-index: var(--header-z-index);
     margin-top: max(var(--section-height),var(--section-height-min));
     height: max(var(--section-height),var(--section-height-min));
-    width: 100vw;
+    width: 100dvw;
     display: grid;
     grid-template-columns: var(--grid-layout);
 

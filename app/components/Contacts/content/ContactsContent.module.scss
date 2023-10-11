@@ -10,7 +10,12 @@
     border-right: 1px solid var(--border-clr);
     padding-top: calc(var(--local-padding-top) + 2 * max(var(--section-height),var(--section-height-min)));
     padding-inline: var(--local-padding-inline);
-    display: flex;
-    gap: 1.5em;
-    flex-direction: column;
+
+
+    .contactlist { 
+        z-index: var(--content-z-index);
+        display: flex;
+        gap: 1.5em;
+        flex-direction: column;
+    }
 }
