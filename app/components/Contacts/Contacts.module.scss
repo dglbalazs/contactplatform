@@ -2,11 +2,17 @@
 
 .wrapper {
     padding: 0;
+    background: var(--clr-primary-100);
+    color: var(--clr-textui-100);
+
+
     --section-height: 10.6vh;
     --section-height-min: 96px;
-    --border-clr: var(--clr-grey-60);
+    --border-clr: var(--clr-primary-60);
     --left-right-padding: 25vw;
     --grid-layout: var(--left-right-padding) calc(100vw - (var(--left-right-padding) * 2)) var(--left-right-padding);
+    --header-z-index: 2;
+    --content-z-index: 1;
 
     display: grid;
     grid-template-areas: centr;
@@ -15,6 +21,7 @@
         grid-area: centr;
     }
 }
+
 // .contacts_wrapper {
 //     padding: 0;
 //     margin: 0;

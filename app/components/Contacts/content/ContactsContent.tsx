@@ -3,7 +3,9 @@ import styles from "./ContactsContent.module.scss"
 const ContactsContent = () => {
 
     return (
-        <div className={styles.wrapper}></div>
+        <div className={styles.wrapper}>
+            Content
+        </div>
     )
 }
 

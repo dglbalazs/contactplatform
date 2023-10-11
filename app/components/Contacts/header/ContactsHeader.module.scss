@@ -1,6 +1,7 @@
 
 .wrapper {
     --padding-side-buttons: 1rem;
+    z-index: var(--header-z-index);
     margin-top: max(var(--section-height),var(--section-height-min));
     height: max(var(--section-height),var(--section-height-min));
     width: 100vw;

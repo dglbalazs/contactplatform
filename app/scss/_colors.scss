@@ -1,41 +1,81 @@
 $colors: (
-  "grey": (
-    "100": hsla(0,0%,8%,1),
-    "90" : hsla(0,0%,10%,1),
-    "80" : hsla(0,0%,12%,1),
-    "70" : hsla(0,0%,14%,1),
-    "60" : hsla(0,0%,16%,1),
-    "50" : hsla(0,0%,18%,1),
-    "40" : hsla(0,0%,20%,1),
-    "30" : hsla(0,0%,22%,1),
-    "20" : hsla(0,0%,24%,1),
-    "10" : hsla(0,0%,25%,1),
-  ),
-  "textui": (
-    "100": hsla(0,0%,100%,1),
-    "56": hsla(0,0%,100%,.56),
-    "32": hsla(0,0%,100%,.32),
-  ),
-  "btn-gradient": (
-    "default": linear-gradient(180deg, rgba(40, 40, 40, 0.70) 0%, #282828 100%),
-    "active-1": linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%),
-    "active-2": linear-gradient(180deg, rgba(40, 40, 40, 0.70) 0%, #282828 100%),
-    "hover-1": linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%),
-    "hover-2": linear-gradient(180deg, rgba(40, 40, 40, 0.70) 0%, #282828 100%),
-  ),
+    "dark" : (
+        "primary": (
+            "100": hsla(0,0%,8%,1),
+            "90" : hsla(0,0%,10%,1),
+            "80" : hsla(0,0%,12%,1),
+            "70" : hsla(0,0%,14%,1),
+            "60" : hsla(0,0%,16%,1),
+            "50" : hsla(0,0%,18%,1),
+            "40" : hsla(0,0%,20%,1),
+            "30" : hsla(0,0%,22%,1),
+            "20" : hsla(0,0%,24%,1),
+            "10" : hsla(0,0%,25%,1),
+          ),
+          "textui": (
+            "100": hsla(0,0%,100%,1),
+            "56": hsla(0,0%,100%,.56),
+            "32": hsla(0,0%,100%,.32),
+          ),
+          "btn-gradient": (
+            "default": linear-gradient(180deg, rgba(40, 40, 40, 0.70) 0%, #282828 100%),
+            "active-1": linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%),
+            "active-2": linear-gradient(180deg, rgba(40, 40, 40, 0.70) 0%, #282828 100%),
+            "hover-1": linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%),
+            "hover-2": linear-gradient(180deg, rgba(40, 40, 40, 0.70) 0%, #282828 100%),
+          ),
+    ),
+    "light" : (
+        "primary": (
+            "100": hsla(0, 0%, 95%, 1), // Adjust lightness as needed
+            "90" : hsla(0, 0%, 90%, 1),
+            "80" : hsla(0, 0%, 85%, 1),
+            "70" : hsla(0, 0%, 80%, 1),
+            "60" : hsla(0, 0%, 75%, 1),
+            "50" : hsla(0, 0%, 70%, 1),
+            "40" : hsla(0, 0%, 65%, 1),
+            "30" : hsla(0, 0%, 60%, 1),
+            "20" : hsla(0, 0%, 55%, 1),
+            "10" : hsla(0, 0%, 50%, 1),
+          ),
+          "textui": (
+            "100": hsla(0,0%,0%,1), // Adjust the lightness for each shade
+            "56": hsla(0,0%,0%,.56),
+            "32": hsla(0,0%,0%,.32),
+          ),
+          "btn-gradient": (
+            "default": linear-gradient(180deg, rgba(200, 200, 200, 0.70) 0%, #e0e0e0 100%), // Light gradient
+            "active-1": linear-gradient(0deg, rgba(40, 40, 40, 0.04) 0%, rgba(40, 40, 40, 0.04) 100%),
+            "active-2": linear-gradient(180deg, rgba(200, 200, 200, 0.70) 0%, #e0e0e0 100%),
+            "hover-1": linear-gradient(0deg, rgba(40, 40, 40, 0.04) 0%, rgba(40, 40, 40, 0.04) 100%),
+            "hover-2": linear-gradient(180deg, rgba(200, 200, 200, 0.70) 0%, #e0e0e0 100%),
+          ),
+    )
+  
 );
 
 $colorVariableName: "clr"; // Dynamic variable for the color name
 
-@each $key, $value in $colors {
-  @each $subKey, $subValue in $value {
-    $varName: "#{$colorVariableName}-#{$key}-#{$subKey}";
-    $varValue: $subValue;
-    :root {
-      --#{$varName}: #{$varValue};
+
+@each $scheme, $schemeColors in $colors {
+    @each $group, $groupColors in $schemeColors {
+      @each $shade, $value in $groupColors {
+        $varName: "#{$colorVariableName}-#{$group}-#{$shade}";
+        $varValue: $value;
+  
+        // Check if the current color scheme is light and apply the media query
+        @if $scheme == "light" {
+            .light {
+                --#{$varName}: #{$varValue};
+            }
+        } @else {
+          .dark {
+            --#{$varName}: #{$varValue};
+          }
+        }
+      }
     }
   }
-}
 
 
 $classes: (
