@@ -1,3 +1,4 @@
+"use client";
 import styles from './Text.module.scss'
 
 interface TextProps {

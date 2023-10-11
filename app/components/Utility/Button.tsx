@@ -1,3 +1,4 @@
+"use client";
 import styles from './Button.module.scss'
 import Icon from './Icon';
 import Text from './Text';
@@ -8,9 +9,10 @@ interface ButtonProps {
     colorType: 'normal' | 'deep' | 'grad';
     icon: 'Add' | 'Back' | 'Call' | 'Change' | 'Delete' | 'Fav' | 'Light' | 'More' | 'Mute' | 'Search' | 'Settings';
     text: string;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
   }
 
-const Button: React.FC<ButtonProps> = ({ buttonType, colorType, icon, text }) => {
+const Button: React.FC<ButtonProps> = ({ buttonType, colorType, icon, text, onClick }) => {
 
     const buttonClassNames = [
         styles.button,
@@ -25,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({ buttonType, colorType, icon, text }) =>
 
 
 return (
-    <button className={buttonClassNames}>
+    <button className={buttonClassNames} onClick={onClick}>
         {buttonType === 'both' && (
         <>
             <Icon iconname={icon}></Icon>

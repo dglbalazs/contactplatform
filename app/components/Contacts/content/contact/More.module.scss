@@ -1,0 +1,26 @@
+
+.wrapper {
+    --local-width: 219px;
+    z-index: 99;
+    position: absolute;
+    left: calc(100% - 40px);
+    top: 50px;
+    width: var(--local-width);
+    background: var(--clr-primary-80);
+    border-radius: 8px;
+
+
+    .option {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        padding: 12px 10px;
+        
+        @media (hover:hover) {
+            &:hover {
+                background: var(--clr-primary-70);
+            }
+        }
+    }
+}

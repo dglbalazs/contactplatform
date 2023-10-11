@@ -1,0 +1,16 @@
+
+.profilepic {
+    --big: 88px;
+    --small: 40px;
+    border-radius: 50%;
+
+    &.small {
+        width: var(--small);
+        height: var(--small);
+    }
+
+    &.big {
+        width: var(--big);
+        height: var(--big);
+    }
+}

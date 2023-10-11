@@ -1,0 +1,37 @@
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .information {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+    
+        .details {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .menuoptions {
+        display: none;
+        gap: .5em;
+        &.opened {
+            display: flex
+        }
+    };
+
+    position:relative;
+
+    
+    &:hover {
+        .menuoptions {
+            display: flex;
+            
+        }
+    }
+}
+

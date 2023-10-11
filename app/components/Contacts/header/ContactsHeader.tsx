@@ -45,12 +45,13 @@ const ContactsHeader: React.FC<Readonly<HeaderProps>> = ({ theme, setTheme}) => 
                     />
                 </div>
             </div>
-            <div className={styles.lightdark} onClick={toggleTheme}>
+            <div className={styles.lightdark}>
             <Button
                         buttonType="onlyicon"
                         colorType="deep"
                         icon="Light"
                         text=""
+                        onClick={toggleTheme}
                     />
             </div>
         </div>

@@ -1,9 +1,16 @@
 
 .wrapper {
+    --local-padding-top: 1em;
+    --local-padding-inline: 1rem;
+
     z-index: var(--content-z-index);
     min-height: 100vh;
     margin-inline: var(--left-right-padding);
     border-left: 1px solid var(--border-clr);
     border-right: 1px solid var(--border-clr);
-    padding-top: calc(2 * max(var(--section-height),var(--section-height-min)));
+    padding-top: calc(var(--local-padding-top) + 2 * max(var(--section-height),var(--section-height-min)));
+    padding-inline: var(--local-padding-inline);
+    display: flex;
+    gap: 1.5em;
+    flex-direction: column;
 }
