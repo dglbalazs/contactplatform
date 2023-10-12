@@ -23,7 +23,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
     return (
         <div className={styles.wrapper}>
             <div className={styles.information}>
-                <Profilepic size="small" profileName="NoImg"></Profilepic>   
+                <Profilepic size="small" img=""></Profilepic>   
                 <div className={styles.details}>
                 <Text text="Timotthy Lewis" texttype={4} clr={1}></Text>
                 <Text text="+36 20 255 5555" texttype={5} clr={2}></Text>
