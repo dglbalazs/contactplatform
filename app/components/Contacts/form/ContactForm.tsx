@@ -4,15 +4,26 @@ import Text from '../../Utility/Text';
 import Profilepic from '../../Utility/Profilepic';
 import Button from '../../Utility/Button';
 import { useRef, useState } from 'react';
- 
+import { s3BaseUrl } from '@/app/lib/s3';
 
+
+type ContactType = {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+    photo: boolean;
+    fav: boolean;
+    muted: boolean;
+}
 
 interface ContactFormProps {
     formType: "Add" | "Edit",
     setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>,
-}
+    editData?: ContactType[] | null}
 
 interface FormData {
+    id?: number;
     name: string;
     phone: string;
     email: string;
@@ -23,16 +34,17 @@ interface FormData {
 }
 
 
-const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOpen }) => {
+const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOpen, editData }) => {
     
     const initFormData: FormData = {
-        name: '',
-        phone: '',
-        email: '',
-        photo: false,
+        id: editData ? editData[0].id : undefined,
+        name: editData ? editData[0].name : '',
+        phone: editData ? editData[0].phone : '',
+        email: editData ?  editData[0].email : '',
+        photo: editData ? editData[0].photo : false,
         photoFile: null,
-        fav: false,
-        muted: false
+        fav: editData ? editData[0].fav : false,
+        muted: editData ? editData[0].muted : false
     };
 
     const [formData, setFormData] = useState<FormData>(initFormData);
@@ -43,6 +55,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
     // -------------------------------------------------------------------------------
     // Event that triggers hidden image type input in case upload button is clicked
     const handleImageUpload = () => {
+        console.log(editData)
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
@@ -103,7 +116,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
 
         try {
             const response = await fetch('/api/contact', {
-                method: 'POST',
+                method: editData ? 'PUT' : 'POST',
                 headers: {
                     'Content-Type' : 'application/json',
                 },
@@ -158,12 +171,12 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                     {/* Image upload section */}
                     {/* -------------------------------------------------- */}
                     <div className={styles.imagesection}>
-                        <Profilepic size="big" img={image ? image : ''}></Profilepic>
+                        <Profilepic size="big" img={image ? image : (formData && editData && editData[0].photo) ? (s3BaseUrl + editData[0].id) : ''}></Profilepic>
                         <Button 
                             buttonType='both'
                             colorType='normal'
-                            icon={!image ? 'Add' : 'Change'}
-                            text={!image ? 'Add picture' : 'Change picture'}
+                            icon={!image && !(editData && editData[0].photo) ? 'Add' : 'Change'}
+                            text={!image && !(editData && editData[0].photo) ? 'Add picture' : 'Change picture'}
                             onClick={handleImageUpload}
                         />
                         <input
@@ -173,7 +186,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                                 hidden
                                 onChange={handleImageChange}
                             />  
-                        { image &&
+                        { (image || (editData && editData[0].photo))  &&
                             <Button
                                 buttonType="onlyicon"
                                 colorType="normal"

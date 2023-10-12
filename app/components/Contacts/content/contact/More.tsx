@@ -4,14 +4,15 @@ import Text from "@/app/components/Utility/Text";
 import styles from "./More.module.scss"
 
 interface MoreProps {
+    onToggle: () => void,
     onEditToggle: () => void,
     onDeleteClick: () => void, // Callback for delete action
   }
   
-const More: React.FC<Readonly<MoreProps>> = ({ onEditToggle, onDeleteClick }) => {
+const More: React.FC<Readonly<MoreProps>> = ({ onToggle, onEditToggle, onDeleteClick }) => {
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} onClick={onToggle}>
             <div className={`${styles.option} ${styles.onlymobile}`}>
                 <Icon iconname="Call"></Icon>
                 <Text text="Call" texttype={5} clr={1}></Text>

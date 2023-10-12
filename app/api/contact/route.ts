@@ -55,3 +55,48 @@ export const POST = async (req: Request) => {
         return NextResponse.json(formData)
     }
 }
+
+
+export const PUT = async (req: Request) => {
+    const formData = await req.json();
+    const contactId = formData.id; // Assuming you have an 'id' field in formData to identify the contact to update
+    
+    try {
+        const existingContact = await prisma?.contact.findUnique({
+            where: {
+                id: contactId,
+            },
+        });
+
+        if (!existingContact) {
+            // Handle the case where the contact to update doesn't exist.
+            return NextResponse.json({ error: 'Contact not found' });
+        }
+
+        const updatedContact = await prisma?.contact.update({
+            where: {
+                id: contactId,
+            },
+            data: {
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                photo: formData.photo,
+                fav: formData.fav,
+                muted: formData.muted,
+            },
+        });
+
+        if (updatedContact) {
+            // Handle a successful update.
+            return NextResponse.json({ updatedContact });
+        } else {
+            // Handle the case where the update failed.
+            return NextResponse.json({ error: 'Contact update failed' });
+        }
+
+    } catch (error) {
+        console.error('Error updating contact:', error);
+        return NextResponse.json({ error: 'An error occurred' });
+    }
+}

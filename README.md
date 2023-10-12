@@ -2,13 +2,22 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## IN PROGRESS
 
-The task is not ready yet.
+The project is not fully ready.
 
-Missing functonalities, which have an estimated release deadline by 2023 Oct 12th 10AM CET:
+There are a couple of bugs, and probably a rework could help the structure and make the product more scalable. 
 
-- Complete mobile friendliness and responsiveness
-- Creation of backend in Prisma, S3, possibly Vercel Postgres
-- Prettify code and improve on Utility components
+Some of the current issues:
+- Editting is buggy (e.g. UI photo deletion)
+- After submitting a form, the data doesn't update automatically, only after refresh
+- Form is not responsive
+- No loading animation 
+
+Added functionalities:
+- Light / Dark mode
+- Connected to S3, uploads images there
+- Data is stored in Vercel Postgres (which is sometimes slow, as after 5 min of not using, it shuts down its resources)
+- Responsive grid layout / "More" popup window
+
 
 ## QUICK LINK
 

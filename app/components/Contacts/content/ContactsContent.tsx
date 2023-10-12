@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 interface ContactsProps {
     formOpen: string | null,
     setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>,
+    setEditData: React.Dispatch<React.SetStateAction<ContactType[]>>,
 }
 
 type ContactType = {
@@ -19,7 +20,7 @@ type ContactType = {
     muted: boolean;
 }
 
-const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setFormOpen }) => {
+const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setFormOpen, setEditData }) => {
 
     const [dataFetching, setDataFetching] = useState(false)
     const [data, setData] = useState<ContactType[]>([]);
@@ -45,6 +46,11 @@ const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setForm
         setActiveContact(index === activeContact ? null : index);
     };
 
+    const handleEditOpen = (index: number ) => {
+        setEditData(data.filter((e) => e.id == index))
+        setFormOpen("Edit")
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.contactlist}>
@@ -56,7 +62,8 @@ const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setForm
                             isOpen={activeContact === contact.id}
                             onToggle={() => handleToggleContact(contact.id)}
                             formOpen={formOpen}
-                            setFormOpen = {setFormOpen}
+                            onEditOpen = {() => handleEditOpen(contact.id)}
+                            requestUpdate={requestUpdate}
                         />
                 ))) : (
                     <p>{dataFetching ? 'Loading...' : 'No data available'}</p>

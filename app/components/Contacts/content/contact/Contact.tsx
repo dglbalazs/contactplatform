@@ -23,11 +23,12 @@ interface ContactProps {
     isOpen: boolean,
     onToggle: () => void,
     formOpen: string | null,
-    setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>,
     data: ContactType,
+    requestUpdate: () => void,
+    onEditOpen: () => void,
   }
 
-const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen, setFormOpen, data }) => {
+const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen, data, requestUpdate,onEditOpen }) => {
 
 
     const handleDeleteClick = async () => {
@@ -40,6 +41,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
           
             if (response.ok) {
               // Handle success
+              requestUpdate()
               console.log(`Successfully deleted item with id ${id}`);
             } else {
               // Handle errors
@@ -56,7 +58,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
     };
     
     const handleEditOpen = (value: "Edit") => {
-        setFormOpen(value);
+        onEditOpen();
     };
 
     return (
@@ -92,7 +94,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
                 />
             </div>
             {isOpen && (
-                <More onDeleteClick={handleDeleteClick} onEditToggle={() => handleEditOpen("Edit")}></More>
+                <More onToggle={onToggle} onDeleteClick={handleDeleteClick} onEditToggle={() => handleEditOpen("Edit")}></More>
             )}
         </div>
     )
