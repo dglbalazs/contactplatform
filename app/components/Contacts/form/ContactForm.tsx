@@ -4,8 +4,8 @@ import Text from '../../Utility/Text';
 import Profilepic from '../../Utility/Profilepic';
 import Button from '../../Utility/Button';
 import { useRef, useState } from 'react';
-import * as aws from 'aws-sdk';
-import { uploadImageToBucket } from "@/app/lib/s3";
+ 
+
 
 interface ContactFormProps {
     formType: "Add" | "Edit",
@@ -17,7 +17,7 @@ interface FormData {
     phone: string;
     email: string;
     photo: boolean;
-    photoFile: File;
+    photoFile: File | null;
     fav: boolean;
     muted: boolean;
 }
@@ -30,7 +30,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
         phone: '',
         email: '',
         photo: false,
-        photoFile: new File([], "dummy.txt", { type: "text/plain" }),
+        photoFile: null,
         fav: false,
         muted: false
     };
@@ -54,7 +54,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
         setFormData((prevFormData) => ({
             ...prevFormData,
             ['photo']: false,
-            ['photoFile']: new File([], "dummy.txt", { type: "text/plain" }),
+            ['photoFile']: null
         }));
     }
 
@@ -113,29 +113,6 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
             if (response.ok) {
                 // Handle successful form submission
                 console.log('Sikeres beküldés.');
-                // ----
-                if (image) {
-                    try {
-                        const buffer = await formData.photoFile.arrayBuffer(); // Convert File to ArrayBuffer
-                        const body = Buffer.from(buffer); // Convert ArrayBuffer to Buffer
-            
-                        // Use the AWS SDK to upload the Buffer to your S3 bucket
-                        const s3 = new aws.S3({ /* your S3 configuration */ });
-                        const params = {
-                            Bucket: 'your-bucket-name',
-                            Key: `unique-key-for-image.jpeg`,
-                            Body: body,
-                            ContentType: formData.photoFile.type,
-                            ACL: 'public-read', // Optional: Make the image public
-                        };
-            
-                        const data = await s3.upload(params).promise();
-                        console.log('Successfully uploaded to S3:', data.Location);
-                    } catch (err) {
-                        console.error('Error uploading to S3:', err);
-                    }
-                }
-                //-----
                 setFormData(initFormData);
                 toggleClose()
                 // setSuccess(true)

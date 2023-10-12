@@ -20,28 +20,20 @@ const s3 = new aws.S3({
 
 export async function uploadImageToBucket(file : File, contactId: number) {
     
-    // const reader = new FileReader();
+    const params = ({
+        Body: file,
+        Bucket: bucketName,
+        Key: contactId.toString(),
+        ContentType: file.type, // Set the content type from the file
+    })
 
-    // reader.onload = (event) => {
-    //     const arrayBuffer = event.target?.result as ArrayBuffer; // Ensure the result is an ArrayBuffer
-    //     const buffer = Buffer.from(arrayBuffer);
-    //     const params = ({
-    //         Body: new Blob([file], { type: file.type }),
-    //         Bucket: bucketName,
-    //         Key: contactId.toString(),
-    //         ContentType: file.type, // Set the content type from the file
-    //         ACL: 'public-read', // Set the access control
-    //     })
-
-    //     s3.putObject(params, (err, data) => {
-    //         if (err) {
-    //             console.error('Error uploading to S3:', err);
-    //         } else {
-    //             console.log('Successfully uploaded to S3:', data);
-    //         }
-    //     });
-    // }
-    // reader.readAsArrayBuffer(file);
+    try {
+        const result = await s3.putObject(params).promise();
+        console.log("Sikeresen feltöltve - ", result);
+    } catch (error) {
+        console.error("Hiba a feltöltés során - ", error);
+        throw error;
+    }
 }
 
 export const s3BaseUrl = "https://" + bucketName + ".s3.eu-central-1.amazonaws.com/"

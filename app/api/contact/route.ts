@@ -31,7 +31,7 @@ export const POST = async (req: Request) => {
         if (createdContact) {
             const contactId = createdContact.id;
 
-            // uploadImageToBucket(formData.photoFile, contactId);
+            uploadImageToBucket(formData.photoFile, contactId);
 
             return NextResponse.json(createdContact);
         } else {
