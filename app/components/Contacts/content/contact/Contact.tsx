@@ -29,6 +29,32 @@ interface ContactProps {
 
 const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen, setFormOpen, data }) => {
 
+
+    const handleDeleteClick = async () => {
+        try {
+          const { id }  = data;
+          try {
+            const response = await fetch(`/api/del?id=${id}`, {
+              method: 'DELETE',
+            });
+          
+            if (response.ok) {
+              // Handle success
+              console.log(`Successfully deleted item with id ${id}`);
+            } else {
+              // Handle errors
+              console.error(`Error deleting item with id ${id}`);
+            }
+          } catch (error) {
+            // Handle network or other errors
+            console.error('An error occurred:', error);
+          }
+        //   updateData();
+        } catch (error) {
+          console.error('Error:', error);
+        }
+    };
+    
     const handleEditOpen = (value: "Edit") => {
         setFormOpen(value);
     };
@@ -66,7 +92,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
                 />
             </div>
             {isOpen && (
-                <More onEditToggle={() => handleEditOpen("Edit")}></More>
+                <More onDeleteClick={handleDeleteClick} onEditToggle={() => handleEditOpen("Edit")}></More>
             )}
         </div>
     )

@@ -5,8 +5,8 @@ dotenv.config();
 
 const region = "eu-central-1";
 const bucketName = "dglcontainer1";
-const accessKeyId = process.env.AWS_ACCESS_KEY;
-const secretAccessKey = process.env.AWS_SECRET_KEY;
+const accessKeyId = process.env.AWS_ACCESS_KEY1;
+const secretAccessKey = process.env.AWS_SECRET_KEY1;
 
 const s3 = new aws.S3({
     region,

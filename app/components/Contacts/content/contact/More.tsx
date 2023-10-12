@@ -5,9 +5,10 @@ import styles from "./More.module.scss"
 
 interface MoreProps {
     onEditToggle: () => void,
+    onDeleteClick: () => void, // Callback for delete action
   }
   
-const More: React.FC<Readonly<MoreProps>> = ({ onEditToggle }) => {
+const More: React.FC<Readonly<MoreProps>> = ({ onEditToggle, onDeleteClick }) => {
 
     return (
         <div className={styles.wrapper}>
@@ -27,8 +28,8 @@ const More: React.FC<Readonly<MoreProps>> = ({ onEditToggle }) => {
                 <Icon iconname="Fav"></Icon>
                 <Text text="Favourite" texttype={5} clr={1}></Text>
             </div>
-            <div className={styles.option}>
-                <Icon iconname="Delete"></Icon>
+            <div className={styles.option} onClick={onDeleteClick}>
+                <Icon iconname="Delete" ></Icon>
                 <Text text="Remove" texttype={5} clr={1}></Text>
             </div>
         </div>

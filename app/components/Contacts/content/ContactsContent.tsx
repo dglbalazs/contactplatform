@@ -23,25 +23,21 @@ const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setForm
 
     const [dataFetching, setDataFetching] = useState(false)
     const [data, setData] = useState<ContactType[]>([]);
+    const [endpoint, setEndpoint] = useState('/api/contact');
 
-    useEffect(() => {
+    const requestUpdate = () => {
         setDataFetching(true)
-        async function fetchData() {
-        try {
-            const response = await fetch('/api/contact');
-            if (response.ok) {
-            const jsonData = await response.json();
-            setData(jsonData);
-            } else {
-            console.error('Error fetching data');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-        }
+        // Fetch data from the current endpoint and update the 'data' state
+        fetch(endpoint)
+          .then((response) => response.json())
+          .then((fetchedData) => setData(fetchedData))
+          .catch((error) => console.error('Error fetching data:', error));
+      };
 
-        fetchData();
-    }, []);
+      useEffect(() => {
+        requestUpdate(); // Initial data fetch
+    
+      }, [endpoint]);
 
     const [activeContact, setActiveContact] = useState<number | null>(null);
 
