@@ -10,21 +10,17 @@ interface ButtonProps {
     icon: 'Add' | 'Back' | 'Call' | 'Change' | 'Delete' | 'Fav' | 'Light' | 'More' | 'Mute' | 'Search' | 'Settings';
     text: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    hideMobile?: boolean
   }
 
-const Button: React.FC<ButtonProps> = ({ buttonType, colorType, icon, text, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ buttonType, colorType, icon, text, onClick, hideMobile }) => {
 
     const buttonClassNames = [
         styles.button,
         styles[buttonType],
         styles[colorType],
+        hideMobile ? styles.hideMobile : ''
       ].join(' ');
-    
-      const iconClassNames = [
-        styles.icon,
-        styles[`icon-${icon}`],
-      ].join(' ');
-
 
 return (
     <button className={buttonClassNames} onClick={onClick}>

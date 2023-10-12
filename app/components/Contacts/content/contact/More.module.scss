@@ -4,12 +4,12 @@
     position: absolute;
     left: calc(100% - 40px);
     top: 50px;
-    width: var(--contact-more-popup-height-desktop);
+    width: var(--contact-more-popup-width);
     background: var(--clr-primary-80);
     border-radius: 8px;
 
     @media (max-width:60rem) {
-        left: calc(100% - var(--contact-more-popup-height-desktop)) !important;
+        left: calc(100% - var(--contact-more-popup-width)) !important;
     }
 
 
@@ -19,10 +19,18 @@
         align-items: center;
         gap: 1em;
         padding: 12px 10px;
+        border-radius: 8px;
         
         @media (hover:hover) {
             &:hover {
                 background: var(--clr-primary-70);
+            }
+        }
+
+        &.onlymobile {
+            display: none;
+            @media (max-width:60rem) {
+                display: flex;
             }
         }
     }

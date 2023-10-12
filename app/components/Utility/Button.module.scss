@@ -8,6 +8,12 @@
     background: var(--clr-primary-100);
 }
 
+.hideMobile {
+    @media (max-width:60rem) {
+        display: none;
+    }
+}
+
 .icon {
     fill: white !important;
     color: white !important;

@@ -26,10 +26,15 @@ $header-submenu-gap-mobile: 3em;
 $vertical-line-size-desktop: 1px;
 $vertical-line-size-mobile: 0px;
 
-$contact-more-popup-height-desktop: 200px;
+$contact-more-popup-height-desktop: calc(3 * 50px + 20px);
+$contact-more-popup-height-mobile: calc(5 * 50px + 10px);
 $contact-more-popup-width-desktop: 219px;
+$contact-more-popup-width-mobile: 160px;
 
+
+// ---------------------------------------------
 // Assigning values to CSS variables
+// ---------------------------------------------
 
 :root {
     --page-section-height: #{$page-section-height-max-desktop};
@@ -50,8 +55,8 @@ $contact-more-popup-width-desktop: 219px;
 
     --vertical-line-size: #{$vertical-line-size-desktop};
 
-    --contact-more-popup-height-desktop: #{$contact-more-popup-height-desktop};
-    --contact-more-popup-height-desktop: #{$contact-more-popup-height-desktop};
+    --contact-more-popup-height: #{$contact-more-popup-height-desktop};
+    --contact-more-popup-width: #{$contact-more-popup-width-desktop};
 }
 
 // Mobile definitions
@@ -70,5 +75,8 @@ $contact-more-popup-width-desktop: 219px;
         --header-submenu-gap: #{$header-submenu-gap-mobile};
 
         --vertical-line-size: #{$vertical-line-size-mobile};
+
+        --contact-more-popup-height: #{$contact-more-popup-height-mobile};
+        --contact-more-popup-width: #{$contact-more-popup-width-mobile};
     }
 }

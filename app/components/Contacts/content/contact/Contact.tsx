@@ -35,12 +35,14 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
                     colorType="deep"
                     icon="Mute"
                     text=""
+                    hideMobile
                 />
                 <Button
                     buttonType="onlyicon"
                     colorType="deep"
                     icon="Call"
                     text=""
+                    hideMobile
                 />
                 <Button
                     buttonType="onlyicon"
