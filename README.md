@@ -17,6 +17,7 @@ Added functionalities:
 - Connected to S3, uploads images there
 - Data is stored in Vercel Postgres (which is sometimes slow, as after 5 min of not using, it shuts down its resources)
 - Responsive grid layout / "More" popup window
+- Pre-popuplates data in Edit mode
 
 
 ## QUICK LINK
