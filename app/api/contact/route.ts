@@ -1,6 +1,8 @@
 import prisma from "../../lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 
+import { uploadImageToBucket } from "@/app/lib/s3";
+
 export const GET = async (req: Request, res: Response) => {
     try {
        const contacts = await prisma?.contact.findMany();
@@ -25,7 +27,18 @@ export const POST = async (req: Request) => {
                 muted: formData.muted,
             }
         });
-        return NextResponse.json(createdContact)
+
+        if (createdContact) {
+            const contactId = createdContact.id;
+
+            // uploadImageToBucket(formData.photoFile, contactId);
+
+            return NextResponse.json(createdContact);
+        } else {
+            // Handle the case where the contact creation failed.
+            return NextResponse.json({ error: 'Contact creation failed' });
+        }
+
     } catch (error) {
         console.error('Error creating contact:', error);
         return NextResponse.json(formData)
