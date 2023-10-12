@@ -18,6 +18,19 @@ const s3 = new aws.S3({
 
 // Upload Function
 
+export async function generateUploadURL(contactId: number) {
+  
+    const params = ({
+      Bucket: bucketName,
+      Key: contactId.toString(),
+      Expires: 60
+    })
+    
+    const uploadURL = await s3.getSignedUrlPromise('putObject', params)
+    return uploadURL
+  }
+
+
 export async function uploadImageToBucket(file : File, contactId: number) {
     
     const params = ({

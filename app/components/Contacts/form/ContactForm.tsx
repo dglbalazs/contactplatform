@@ -111,8 +111,22 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
             })
 
             if (response.ok) {
+                const responseData = await response.json();
                 // Handle successful form submission
                 console.log('Sikeres beküldés.');
+
+                const uploadUrl = responseData.putUrl;
+
+                if (formData.photoFile) {
+                    await fetch(uploadUrl, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        },
+                        body: formData.photoFile
+                    })
+                }
+                
                 setFormData(initFormData);
                 toggleClose()
                 // setSuccess(true)
