@@ -27,6 +27,43 @@ html,body {
     overflow-x: hidden;
 }
 
+//-----------------------
+
+::-moz-selection { /* Code for Firefox */
+    color: rgb(0, 204, 255);
+    text-shadow: 0 0 10px rgb(0, 204, 255);
+    background: rgb(89, 0, 255)rgb(9, 5, 19);
+    }
+    
+    ::selection {
+    color: rgb(0, 204, 255);
+    text-shadow: 0 0 10px rgb(0, 204, 255);
+    background: rgb(89, 0, 255)rgb(9, 5, 19);
+    }
+    
+    
+    html { 
+    scrollbar-color: hsl(197, 36%, 61%) #f1f1f1;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+    }
+    
+    ::-webkit-scrollbar {
+    width: 0.4rem;
+    }
+    
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+    
+    ::-webkit-scrollbar-thumb {
+    background: hsl(197, 36%, 61%) !important; 
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+    background: hsl(197, 36%, 61%); 
+    }
+
 .textclr1 { 
     color: var(--clr-textui-100);
 }
