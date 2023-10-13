@@ -188,7 +188,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                     </div>
                     { editData && editData[0].photo && formData.photoFile &&
                         <div className={styles.notificationMsg}>
-                            <Text text="Please, note that image change can take up to a few minutes to be completed and will require a page refresh." texttype={5} clr={2}></Text>
+                            <Text text="Please, note that for the image change you might need to empty your cache to take effect." texttype={5} clr={2}></Text>
                         </div>
                     }
 
