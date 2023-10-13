@@ -52,10 +52,12 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
         onEditOpen();
     };
 
+    const timeNow = new Date().getTime()
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.information}>
-                <Profilepic size="small" img={data.photo ? s3BaseUrl + data.id : ''}></Profilepic>   
+                <Profilepic size="small" img={data.photo ? s3BaseUrl + data.id + '?t=' + timeNow : ''}></Profilepic>   
                 <div className={styles.details}>
                 <Text text={data.name} texttype={4} clr={1}></Text>
                 <Text text={data.phone} texttype={5} clr={2}></Text>

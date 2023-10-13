@@ -186,11 +186,12 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                             />
                         }
                     </div>
-                    { editData && editData[0].photo && formData.photoFile &&
+                    
+                    {/* { editData && editData[0].photo && formData.photoFile &&
                         <div className={styles.notificationMsg}>
-                            <Text text="Please, note that for the image change you might need to empty your cache to take effect." texttype={5} clr={2}></Text>
+                            <Text text="Please, note that for image change you might need to empty your cache to take effect." texttype={5} clr={2}></Text>
                         </div>
-                    }
+                    } */}
 
 
                     {/* -------------------------------------------------- */}
