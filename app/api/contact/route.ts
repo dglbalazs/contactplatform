@@ -1,11 +1,15 @@
 import prisma from "../../lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 
-import { generateUploadURL } from "@/app/lib/s3";
+import { generateUploadURL, deleteObject } from "@/app/lib/s3";
 
 export const GET = async (req: Request, res: Response) => {
     try {
-       const contacts = await prisma?.contact.findMany();
+       const contacts = await prisma?.contact.findMany({
+        orderBy: {
+            id: 'desc',
+        },
+       });
        return NextResponse.json(contacts)
     } catch (error) {
         console.error (error);
@@ -88,8 +92,16 @@ export const PUT = async (req: Request) => {
         });
 
         if (updatedContact) {
-            // Handle a successful update.
-            return NextResponse.json({ updatedContact });
+
+            if (updatedContact.photo) {
+                // Handle a successful update.
+                const generatedUrl = await generateUploadURL(contactId);
+                return NextResponse.json({ updatedContact, putUrl: generatedUrl });
+            } else {
+                await deleteObject(contactId)
+                return NextResponse.json({ updatedContact })
+            }
+
         } else {
             // Handle the case where the update failed.
             return NextResponse.json({ error: 'Contact update failed' });

@@ -3,7 +3,7 @@ import styles from './ContactForm.module.scss'
 import Text from '../../Utility/Text';
 import Profilepic from '../../Utility/Profilepic';
 import Button from '../../Utility/Button';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { s3BaseUrl } from '@/app/lib/s3';
 import { ContactType, FormData } from "../../interfaces"
 
@@ -31,6 +31,14 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
     const [formData, setFormData] = useState<FormData>(initFormData);
     const [image, setImage] = useState<string>('');
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (!editData) return
+        if (!editData[0].photo) return
+
+        const imgUrl = s3BaseUrl + editData[0].id
+        setImage(imgUrl)
+    },[])
 
 
     // -------------------------------------------------------------------------------
@@ -153,12 +161,12 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                     {/* Image upload section */}
                     {/* -------------------------------------------------- */}
                     <div className={styles.imagesection}>
-                        <Profilepic size="big" img={image ? image : (formData && editData && editData[0].photo) ? (s3BaseUrl + editData[0].id) : ''}></Profilepic>
+                        <Profilepic size="big" img={image ? image : ''}></Profilepic>
                         <Button 
                             buttonType='both'
                             colorType='normal'
-                            icon={!image && !(editData && editData[0].photo) ? 'Add' : 'Change'}
-                            text={!image && !(editData && editData[0].photo) ? 'Add picture' : 'Change picture'}
+                            icon={!image ? 'Add' : 'Change'}
+                            text={!image ? 'Add picture' : 'Change picture'}
                             onClick={handleImageUpload}
                         />
                         <input
@@ -168,7 +176,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                                 hidden
                                 onChange={handleImageChange}
                             />  
-                        { (image || (editData && editData[0].photo))  &&
+                        { (image)  &&
                             <Button
                                 buttonType="onlyicon"
                                 colorType="normal"
@@ -178,6 +186,12 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                             />
                         }
                     </div>
+                    { editData && editData[0].photo && formData.photoFile &&
+                        <div className={styles.notificationMsg}>
+                            <Text text="Please, note that image change can take up to 1 minute to be completed and will require a page refresh." texttype={5} clr={2}></Text>
+                        </div>
+                    }
+
 
                     {/* -------------------------------------------------- */}
                     {/* Input data form section */}

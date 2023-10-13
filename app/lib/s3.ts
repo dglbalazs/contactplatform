@@ -30,3 +30,20 @@ export async function generateUploadURL(contactId: number) {
   }
 
 export const s3BaseUrl = "https://" + bucketName + ".s3.eu-central-1.amazonaws.com/"
+
+export async function deleteObject(contactId: number) {
+
+    const params = ({
+        Bucket: bucketName,
+        Key: contactId.toString(),
+      })
+
+    s3.deleteObject(params, (err, data) => {
+        if (err) {
+        console.error('Error deleting object from S3:', err);
+        } else {
+        console.log('Successfully deleted object from S3:', data);
+    }
+    
+  });
+}
