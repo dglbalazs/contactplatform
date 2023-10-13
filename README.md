@@ -7,9 +7,9 @@ The project is not fully ready.
 There are a couple of bugs, and probably a rework could help the structure and make the product more scalable. 
 
 Some of the current issues:
-- Editting is buggy (e.g. UI photo deletion)
-- After submitting a form, the data doesn't update automatically, only after refresh
-- Form is not responsive
+- ~~Editting is buggy (e.g. UI photo deletion)~~ FIXED
+- ~~After submitting a form, the data doesn't update automatically, only after refresh~~ FIXED
+- ~~Form is not responsive~~ KINDA FIXED
 - No loading animation 
 
 Added functionalities:
