@@ -36,7 +36,9 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
         if (!editData) return
         if (!editData[0].photo) return
 
-        const imgUrl = s3BaseUrl + editData[0].id
+        const timeNow = new Date().getTime()
+
+        const imgUrl = s3BaseUrl + editData[0].id + '?t=' + timeNow
         setImage(imgUrl)
     },[])
 
@@ -186,7 +188,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                             />
                         }
                     </div>
-                    
+
                     {/* { editData && editData[0].photo && formData.photoFile &&
                         <div className={styles.notificationMsg}>
                             <Text text="Please, note that for image change you might need to empty your cache to take effect." texttype={5} clr={2}></Text>

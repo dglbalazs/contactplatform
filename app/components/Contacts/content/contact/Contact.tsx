@@ -53,7 +53,7 @@ const Contact: React.FC<Readonly<ContactProps>> = ({ isOpen, onToggle, formOpen,
     };
 
     const timeNow = new Date().getTime()
-
+    
     return (
         <div className={styles.wrapper}>
             <div className={styles.information}>
