@@ -2,43 +2,20 @@
 import Contact from "./contact/Contact";
 import styles from "./ContactsContent.module.scss"
 import { useState, useEffect } from "react";
-
+import { ContactType } from "../../interfaces"
+import Text from "../../Utility/Text";
 
 interface ContactsProps {
     formOpen: string | null,
     setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>,
     setEditData: React.Dispatch<React.SetStateAction<ContactType[]>>,
+    data: ContactType[],
+    requestUpdate: () => void,
+    dataFetching: Boolean
 }
 
-type ContactType = {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    photo: boolean;
-    fav: boolean;
-    muted: boolean;
-}
+const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setFormOpen, setEditData, data, requestUpdate, dataFetching }) => {
 
-const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setFormOpen, setEditData }) => {
-
-    const [dataFetching, setDataFetching] = useState(false)
-    const [data, setData] = useState<ContactType[]>([]);
-    const [endpoint, setEndpoint] = useState('/api/contact');
-
-    const requestUpdate = () => {
-        setDataFetching(true)
-        // Fetch data from the current endpoint and update the 'data' state
-        fetch(endpoint)
-          .then((response) => response.json())
-          .then((fetchedData) => setData(fetchedData))
-          .catch((error) => console.error('Error fetching data:', error));
-      };
-
-      useEffect(() => {
-        requestUpdate(); // Initial data fetch
-    
-      }, [endpoint]);
 
     const [activeContact, setActiveContact] = useState<number | null>(null);
 
@@ -66,7 +43,7 @@ const ContactsContent: React.FC<Readonly<ContactsProps>> = ({  formOpen, setForm
                             requestUpdate={requestUpdate}
                         />
                 ))) : (
-                    <p>{dataFetching ? 'Loading...' : 'No data available'}</p>
+                    <Text text={dataFetching ? 'Loading...' : 'No data available'} texttype={2} clr={1}></Text>
                 )}
 
   

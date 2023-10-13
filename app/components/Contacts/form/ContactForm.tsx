@@ -5,36 +5,17 @@ import Profilepic from '../../Utility/Profilepic';
 import Button from '../../Utility/Button';
 import { useRef, useState } from 'react';
 import { s3BaseUrl } from '@/app/lib/s3';
+import { ContactType, FormData } from "../../interfaces"
 
-
-type ContactType = {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    photo: boolean;
-    fav: boolean;
-    muted: boolean;
-}
 
 interface ContactFormProps {
     formType: "Add" | "Edit",
     setFormOpen: React.Dispatch<React.SetStateAction<"Add" | "Edit" | null>>,
-    editData?: ContactType[] | null}
-
-interface FormData {
-    id?: number;
-    name: string;
-    phone: string;
-    email: string;
-    photo: boolean;
-    photoFile: File | null;
-    fav: boolean;
-    muted: boolean;
+    editData?: ContactType[] | null,
+    requestUpdate: () => void,
 }
 
-
-const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOpen, editData }) => {
+const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOpen, editData, requestUpdate }) => {
     
     const initFormData: FormData = {
         id: editData ? editData[0].id : undefined,
@@ -142,6 +123,7 @@ const ContactForm: React.FC<Readonly<ContactFormProps>> = ({ formType, setFormOp
                 
                 setFormData(initFormData);
                 toggleClose()
+                requestUpdate()
                 // setSuccess(true)
             } else {
                 // Handle form submission error

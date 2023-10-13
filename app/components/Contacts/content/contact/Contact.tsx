@@ -7,17 +7,8 @@ import More from "./More";
 import { useState } from "react";
 import ContactForm from "../../form/ContactForm";
 import { s3BaseUrl } from "@/app/lib/s3";
+import { ContactType } from "../../../interfaces"
 
-
-type ContactType = {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    photo: boolean;
-    fav: boolean;
-    muted: boolean;
-}
 
 interface ContactProps {
     isOpen: boolean,
