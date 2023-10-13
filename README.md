@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## IN PROGRESS
 
-The project is not fully ready.
+The project ~~is not fully ready~~ kinda ready :).
 
 There are a couple of bugs, and probably a rework could help the structure and make the product more scalable. 
 
